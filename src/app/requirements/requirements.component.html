@@ -1,0 +1,110 @@
+<app-header></app-header>
+<!-- [routerLink]="['/requirements/addreq']" -->
+<div class="container">
+  <div class="card-header clearfix ch">
+    <header class="float-start" style="font-weight: 800;">Requirement-List</header>
+    <button class="btn btn-warning btn-sm float-end " [routerLink]="['requirements/addreq']">Add-requirement</button>
+    <button class="btn btn-warning btn-sm float-end " style='margin-right:16px'>Add-Drive</button>
+  </div>
+  <div class="mt-4 mb-4 cc">
+    <div class="float-end">count: {{reqcount}}</div>
+
+
+    <!-- <div class="card"> -->
+    <div class="card-body">
+      <div style="padding-top:20px;padding-bottom:20px;">
+        <input class="form-control" type="text" placeholder="Search.......">
+      </div>
+      <div class="table100 ver5 m-b-110">
+        <div class="table100-head">
+          <table>
+            <thead>
+              <tr class="row100 head">
+                <th class="cell100 column1">Requirement Name</th>
+                <th class="cell100 column2">Experience </th>
+                <th class="cell100 column3">Company</th>
+                <th class="cell100 column4">Skills</th>
+                <th class="cell100 column5">Req Type</th>
+                <th class="cell100 column5">Job Code</th>
+                <th class="cell100 column5"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div class="table100-body js-pscroll">
+          <table>
+            <tbody>
+              <tr class="row100 body" *ngFor="let item of carddetails">
+                <td class="cell100 column1">{{item?.RequirementName}}</td>
+                <td class="cell100 column2">{{item?.Experience}}</td>
+                <td class="cell100 column3">{{item.ClientId?.clientName}}</td>
+                <td class="cell100 column4">{{item.Skills}}</td>
+                <td class="cell100 column5">{{item.RequirementType}}</td>
+                <td class="cell100 column5">{{item.JobCode}}</td>
+                <td class="cell100 column5">
+                  <button class="btn btn-outline-success btn-sm" (click)="addcandidate(item._id)"> Post</button>
+                  <div *ngIf="isassigned">
+                    <button class="btn btn-outline-danger btn-sm">Edit</button>
+                  <button class="btn btn-outline-secondary btn-sm" (click)="assign(item._id)"> Assign</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </div> -->
+
+
+
+
+
+
+
+
+
+<!-- <div class="card mt-2 req-card" *ngFor="let item of carddetails">
+  <div class="card-body" (click)="addcandidate(item._id)">
+    <h4 style="font-weight:500;">{{item.RequirementName}} - {{item.ClientId?.clientName}}</h4>
+    <p class="cn">{{item.ClientId?.clientName}}</p>
+    <div class="row sm">
+      <div class="col-lg-2">
+        <i class="fa fa-briefcase" aria-hidden="true"> {{item.Experience}}</i>
+      </div>
+      <div class="col-lg-2">
+        <i class="fa fa-inr" aria-hidden="true"> Not disclosed</i>
+      </div>
+      <div class="col-lg-3">
+        <i class="fa fa-map-marker" aria-hidden="true"> {{item.Location}}</i>
+      </div>
+      <div class="col-lg-4 ref" *ngIf="item.referral === true">
+        <p>Referral bonus * ( <i class="fa fa-inr" aria-hidden="true"></i> 5000 - 10000)</p>
+      </div>
+      <div class="mt-3 sm"><i class="fa fa-file-text-o" aria-hidden="true"> &nbsp;Requirement Type : {{item.RequirementType}}</i>
+      </div>
+    </div>
+    <div class="mt-3 sm"><i class="fa fa-file-text-o" aria-hidden="true"> &nbsp; Skill required : {{item.Skills}}</i>
+    </div>
+    <div class="row sm mt-3">
+      <div class="col-lg-3">
+        <i class="fa fa-calendar" aria-hidden="true"> Created on : {{item.CreatedDate}}</i>
+      </div>
+      <div class="col-lg-3">
+        <p>Job-code : {{item.JobCode}}</p>
+      </div>
+      <div class="col-lg-3">
+        <i class="fa fa-user-o" aria-hidden="true"> Positions : {{item.NoOfPosts}}</i>
+      </div>
+      <div class="col-lg-3" style="color: green;" *ngIf="item.Status === 'ACTIVE'">
+        <i class="fa fa-check-circle-o" aria-hidden="true"> {{item.Status}} </i>
+       </div>
+       <div class="col-lg-3" style="color: tomato;" *ngIf="item.Status === 'CLOSED'">
+        <i class="fa fa-times-circle-o" aria-hidden="true"> {{item.Status}} </i>
+       </div>
+    </div>
+  </div>
+</div> -->

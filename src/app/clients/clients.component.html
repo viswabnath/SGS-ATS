@@ -1,0 +1,156 @@
+<app-header></app-header>
+
+<div class="container">
+  <!-- <div class="card mt-3"> -->
+  <div class="card-header text-white bg-dark clearfix ch mt-2">
+    <header class="float-start" style="font-weight: 800;" style="cursor: pointer;">Clients</header>
+    <!-- <button class="btn btn-success btn-sm float-end " [routerLink]="['addrole']" >Add New Client</button> -->
+    <p class="btn btn-success btn-sm float-end " style='margin-right:16px' (click)="modulebutton()">Add New Client</p>
+    <!-- <button class="btn btn-success btn-sm float-end " [routerLink]="['addpermissions']" style='margin-right:16px'>Create Permissions</button> -->
+  </div>
+
+
+  <div class="card text-center mt-5" *ngIf="moduleclicked">
+    <form [formGroup]="moduleForm " (ngSubmit)="onsubmit()">
+
+      <div class="row mb-3 mt-5">
+        <label for="firstname" class="col-sm-2 col-form-label">client Name<span id="req">*</span></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="clientName" id="firstname" />
+        </div>
+        <small *ngIf="registerFormcontrol.clientName.invalid && isSubmitted" class="error">client Name is required
+        </small>
+      </div>
+      <div class="row mb-3 mt-5">
+        <label for="firstname" class="col-sm-2 col-form-label">Client Location<span id="req">*</span></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="location" id="firstname" />
+        </div>
+        <small *ngIf="registerFormcontrol.location.invalid && isSubmitted" class="error">client location is required
+        </small>
+      </div>
+      <div class="row mb-3 mt-5">
+        <label for="firstname" class="col-sm-2 col-form-label">POC Name<span id="req">*</span></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="POCName" id="firstname" />
+        </div>
+        <small *ngIf="registerFormcontrol.POCName.invalid && isSubmitted" class="error">POC Name is required
+        </small>
+      </div>
+      <div class="row mb-3 mt-5">
+        <label for="firstname" class="col-sm-2 col-form-label">POC Email<span id="req">*</span></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="POCEmail" id="firstname" />
+        </div>
+        <small *ngIf="registerFormcontrol.POCEmail.invalid && isSubmitted" class="error">POC Email is required
+        </small>
+      </div>
+
+      <div class="row mb-3 mt-5">
+        <label for="firstname" class="col-sm-2 col-form-label">Zone<span id="req">*</span></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="zone" id="firstname" />
+        </div>
+        <small *ngIf="registerFormcontrol.zone.invalid && isSubmitted" class="error">Zone is required
+        </small>
+      </div>
+      <div class="row mb-3 mt-5">
+        <label for="firstname" class="col-sm-2 col-form-label">AM<span id="req">*</span></label>
+        <div class="col-sm-10">
+          <select class="form-select" formControlName="AM">
+            <option *ngFor="let item of somedata">{{item.firstname}}</option>
+        </select>
+        </div>
+        <small *ngIf="registerFormcontrol.AM.invalid && isSubmitted" class="error">AM is required
+        </small>
+      </div>
+
+      <!-- <div class="row mb-3 mt-5">
+                      <label for="firstname" class="col-sm-2 col-form-label">resume <span id="req">*</span></label>
+                      <div class="col-sm-10">
+                        <input type="file" class="form-control" id="file" (change)="handleFileInput($event)" />
+                      </div>
+                      <small *ngIf="registerFormcontrol.myfile.invalid && isSubmitted" class="error">POC Name is required
+                      </small>
+                    </div>
+                    <img [src]="url" height="200"> -->
+
+
+      <div class="btn text-center mt-4">
+        <button class="btn btn-danger" type="button" (click)="oncancel()">Cancel</button>
+        <button class="btn btn-success" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- <div class="card text-center mt-5" *ngIf="editClicked">
+            <form [formGroup]="editForm" (ngSubmit)="onsend()">
+              <div class="row mb-3 mt-5">
+                <label for="firstname" class="col-sm-2 col-form-label"
+                >Role Name : <span id="req"> {{roleNamee}}</span></label
+              >
+              </div>
+              <div class="row mb-3 mt-5">
+                <label for="firstname" class="col-sm-2 col-form-label"
+                  >Reports to<span id="req">*</span></label
+                >
+                <div class="col-sm-10">
+                  <select
+                    class="form-select"
+                    formControlName="reportsTo"
+                    aria-label="Default select example"
+                  >
+                  <option *ngFor="let item of rolesList" value="{{item._id}}">{{item.roleName}}</option>
+                  </select>
+                </div>
+                <small
+                *ngIf="EditFormcontrol.reportsTo.invalid && isSubmitted"
+                class="error"
+                >Choose role to report
+              </small>
+              </div>
+              <div class="btn text-center mt-4">
+                <button class="btn btn-danger" type="button" (click)="oncancel()" >Cancel</button>
+                <button class="btn btn-success" type="submit" >Submit</button>
+              </div>
+            </form>
+          </div> -->
+
+
+  <div class="card-body">
+    <div class="table100 ver5 m-b-110">
+      <div class="table100-head ">
+        <table>
+          <thead>
+            <tr class="row100 head text-center">
+              <th class="cell100 column1">Client-Name</th>
+              <th class="cell100 column2">Location</th>
+              <th class="cell100 column3">POC Name</th>
+              <th class="cell100 column4">POC Email</th>
+              <th class="cell100 column5">Assigned Manager</th>
+              <th class="cell100 column6">Zone</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <div class="table100-body js-pscroll">
+        <table>
+          <tbody>
+            <tr class="row100 body text-center" *ngFor="let item of rolesList">
+              <td class="cell100 column1">{{item.clientName}}</td>
+              <td class="cell100 column2">{{item?.location}}</td>
+              <td class="cell100 column3">{{item?.POCName}}</td>
+              <td class="cell100 column4">{{item?.POCEmail}}</td>
+              <td class="cell100 column5">{{item?.AM?.firstname}}</td>
+              <td class="cell100 column6">{{item?.zone}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+  <!-- </div> -->
+</div>

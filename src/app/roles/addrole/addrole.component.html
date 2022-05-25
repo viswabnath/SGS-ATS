@@ -1,0 +1,142 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="card-header text-white bg-dark clearfix ch mt-2">
+    <header
+      class="float-start"
+      style="font-weight: 800"
+      style="cursor: pointer"
+    >
+      Add New Role
+    </header>
+    <button
+      class="btn btn-success btn-sm float-end"
+      [routerLink]="['../../roles']"
+    >
+      Roles
+    </button>
+    <!-- <button class="btn btn-outline-primary btn-sm float-end " style='margin-right:16px'>Approved-list</button> -->
+  </div>
+  <div class="card-body text-center">
+    <form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+      <div class="row mb-3">
+        <label for="firstname" class="col-sm-2 col-form-label"
+          >Role Name<span id="req">*</span></label
+        >
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="roleName"
+            id="firstname"
+          />
+        </div>
+        <small
+          *ngIf="registerFormcontrol.roleName.invalid && isSubmitted"
+          class="error"
+          >Role Name is required
+        </small>
+      </div>
+
+       <div class="row mb-3">
+                <label for="role" class="col-sm-2 col-form-label"
+                  >Reports To<span id="req">*</span></label
+                >
+                <div class="col-sm-10">
+                  <select
+                    class="form-select"
+                    formControlName="role"
+                    aria-label="Default select example"
+                  >
+                  <option *ngFor="let item of rolesList" value="{{item._id}}">{{item.roleName}}</option>
+                  </select>
+                </div>
+                <small
+                  *ngIf="registerFormcontrol.role.invalid && isSubmitted"
+                  class="error"
+                  >Role is required
+                </small>
+              </div>
+
+             <!-- <div class="row mb-3">
+                <label for="role" class="col-sm-2 col-form-label"
+                  >Profile<span id="req">*</span></label
+                >
+                <div class="col-sm-10">
+                  <select
+                    class="form-select"
+                    formControlName="profile"
+                    aria-label="Default select example"
+                  >
+                  <option *ngFor="let item of rolesList">{{item.RoleName}}</option>
+                  </select>
+                </div>
+                <small
+                  *ngIf="registerFormcontrol.profile.invalid && isSubmitted"
+                  class="error"
+                  >profile is required
+                </small>
+              </div> -->
+
+      <div class="row mb-3">
+        <label for="role" class="col-sm-2 col-form-label"
+          >Permissions<span id="req">*</span></label
+        >
+        <div class="col-sm-10">
+          <select
+            class="form-select"
+            formControlName="permissions"
+            aria-label="Default select example"
+            multiple
+            data-live-search="true"
+          >
+            <option *ngFor="let item of permissions" value="{{ item._id }}">
+              {{ item.permissionName }}
+            </option>
+          </select>
+        </div>
+        <small
+          *ngIf="registerFormcontrol.permissions.invalid && isSubmitted"
+          class="error"
+          >Permissions is required
+        </small>
+      </div>
+
+      <!-- <div class="row mb-3">
+        <label for="role" class="col-sm-2 col-form-label"
+          >Permissions<span id="req">*</span></label
+        >
+        <div class="col-sm-10">
+          <select
+            class="selectpicker"
+            formControlName="permissions"
+            aria-label="Default select example"
+            multiple
+            data-live-search="true"
+          >
+            <option *ngFor="let item of permissions">
+              {{ item.permissionName }}
+            </option>
+          </select>
+        </div>
+        <small
+          *ngIf="registerFormcontrol.permissions.invalid && isSubmitted"
+          class="error"
+          >permissions is required
+        </small>
+      </div> -->
+
+      <div class="btn text-center mt-4">
+        <button
+          class="btn btn-danger"
+          type="button"
+          [routerLink]="['../../roles']"
+        >
+          Cancel
+        </button>
+        <button class="btn btn-success" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+

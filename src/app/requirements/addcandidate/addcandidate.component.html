@@ -1,0 +1,366 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="card mt-4 mb-4">
+    <div class="card-header">
+      <header class="float-start" style="font-weight: 800">
+        Candidate-Posting
+      </header>
+      <button class="btn btn-warning btn-sm float-end" [routerLink]="['/requirements']">
+        Requirement-list
+      </button>
+    </div>
+    <div class="card-body text-center">
+
+      <div>
+        <header class="content-header">Requirement Details</header>
+        <div class="row mt-3">
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="reqname" class="col-sm-2 col-form-label">Req Name</label>
+              <div class="col-sm-10">
+               <!-- <p>{{singledata.RequirementName}}</p> -->
+               <input type="text" value={{singledata.RequirementName}} class="form-control" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="skillset" class="col-sm-2 col-form-label">Skill Set</label>
+              <div class="col-sm-10">
+               <!-- <p>{{singledata.Skills}}</p>/ -->
+               <input type="text" value={{singledata.Skills}} class="form-control" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="jobcode" class="col-sm-2 col-form-label">Job Code</label>
+              <div class="col-sm-10">
+                <!-- <p>{{singledata.JobCode}}</p> -->
+                <input type="text" value={{singledata.JobCode}} class="form-control" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <form [formGroup]="requirementForm" (ngSubmit)="onsubmit()">
+        <!-- <header class="content-header">Requirement Details</header>
+        <div class="row mt-3">
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="reqname" class="col-sm-2 col-form-label">Req Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="reqname" formControlName="RequirementName" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="skillset" class="col-sm-2 col-form-label">Skill Set</label>
+              <div class="col-sm-10">
+                <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [settings]="dropdownSettings"
+                  [data]="dropdownList" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
+                  formControlName="skillset">
+                </ng-multiselect-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="jobcode" class="col-sm-2 col-form-label">Job Code</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="jobcode" formControlName="jobcode" />
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <header class="content-header">Candidate Details</header>
+        <div class="row mt-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="firstname" formControlName="candidatefirstname" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="lastname" class="col-sm-2 col-form-label">last Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="lastname" formControlName="candidatelastname" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="contact" class="col-sm-2 col-form-label">Contact</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="contact" formControlName="candidatenumber" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="emailid" class="col-sm-2 col-form-label">Email Id</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="emailid" formControlName="candidateemail" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="country" class="col-sm-2 col-form-label">Country</label>
+              <div class="col-sm-10">
+                <select class="form-select" formControlName="country">
+                  <option *ngFor="let item of countryList">
+                    {{ item.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="state" class="col-sm-2 col-form-label">State</label>
+              <div class="col-sm-10">
+                <select class="form-select" formControlName="state">
+                  <option *ngFor="let item of stateList">
+                    {{ item.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-5 col-md-6">
+            <div class="row mb-3">
+              <label for="currentlocation" class="col-sm-2 col-form-label">Current Location</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="currentlocation" formControlName="currentlocation" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="row mb-3">
+              <label for="dob" class="col-sm-2 col-form-label">DOB</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="dob" formControlName="DOB" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="pad" class="col-sm-2 col-form-label">PAN No</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="pad" formControlName="pannumber" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="highestdegree" class="col-sm-2 col-form-label">Highest Qualification</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="highestdegree" formControlName="highestdegree" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-6">
+            <div class="row mb-3">
+              <label for="university" class="col-sm-2 col-form-label">University</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="university" formControlName="university" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="row mb-3">
+              <label for="passingyear" class="col-sm-2 col-form-label">passing year</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="passingyear" formControlName="passingyear" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="skillset" class="col-sm-2 col-form-label"
+              >Skill-set<span id="req">*</span></label
+            >
+            <div class="col-sm-6">
+              <!-- <input
+                type="text"
+                class="form-control"
+                formControlName="skillset"
+                id="skillset"
+              /> -->
+              <ng-multiselect-dropdown
+              [placeholder]="'custom placeholder'"
+              [settings]="dropdownSettings"
+              [data]="dropdownList"
+              (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)"
+              formControlName="Skills"
+            >
+            </ng-multiselect-dropdown>
+            </div>
+            <!-- <small
+                          *ngIf="registerFormcontrol.firstname.invalid && isSubmitted"
+                          class="error"
+                          >First Name is required
+                        </small> -->
+        <div class="col-sm-2">
+          <button class="btn btn-primary" type="button">Add Skill</button>
+        </div>
+          </div>
+
+        </div>
+
+        <header class="content-header">Experience Details</header>
+        <div class="row mt-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="worklocation" class="col-sm-2 col-form-label">Work Location</label>
+              <div class="col-sm-10">
+                <select class="form-select" formControlName="worklocation">
+                  <option *ngFor="let item of stateList">
+                    {{ item.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="totalexp" class="col-sm-2 col-form-label">Total exp</label>
+              <div class="col-sm-10">
+                <select class="form-select" formControlName="totalexp">
+                  <option *ngFor="let item of expList">{{ item.year }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="relevantexp" class="col-sm-2 col-form-label">Relevant exp</label>
+              <div class="col-sm-10">
+                <select class="form-select" aria-label=" select example" formControlName="relevantexp">
+                  <option *ngFor="let item of expList">{{ item.year }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="currentctc" class="col-sm-2 col-form-label">Current CTC</label>
+              <div class="col-sm-10">
+                <select class="form-select" aria-label=" select example" formControlName="currentctc">
+                  <option *ngFor="let item of ctcList">{{ item.ctc }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-6">
+            <div class="row mb-3">
+              <label for="expectedctc" class="col-sm-2 col-form-label">Expected CTC</label>
+              <div class="col-sm-10">
+                <select class="form-select" aria-label=" select example" formControlName="expectedctc">
+                  <option *ngFor="let item of ctcList">{{ item.ctc }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="row mb-3">
+              <label for="noticeperiod" class="col-sm-4 col-form-label">Notice Period</label>
+              <div class="col-sm-6">
+                <input type="number" class="form-control" id="noticeperiod" formControlName="noticeperiod" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-5 col-md-6">
+            <div class="row mb-3">
+              <label for="currentcompany" class="col-sm-4 col-form-label">Current Company</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="currentlocation" formControlName="currentcompany" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row mb-3">
+              <label for="durationfrom" class="col-sm-4 col-form-label">Duration From</label>
+              <div class="col-sm-7">
+                <input type="date" class="form-control" id="durationfrom" formControlName="durationfrom" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="row mb-3">
+              <label for="durationto" class="col-sm-4 col-form-label">Duration to:</label>
+              <div class="col-sm-7">
+                <input type="date" class="form-control" id="durationto" formControlName="durationto" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn">
+          <button class="btn btn-danger" type="reset">Cancel</button>
+          <button class="btn btn-success" type="submit">Submit</button>
+          <button class="btn btn-secondary" type="reset">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <div class="card-body">
+      <header>List of Submitted Candidates to the recuriment</header>
+      <div class="table100 ver5 m-b-110">
+        <div class="table100-head ">
+          <table>
+            <thead>
+              <tr class="row100 head text-center">
+                <th class="cell100 column1">Candidate-Name</th>
+                <th class="cell100 column2">Location</th>
+                <th class="cell100 column3">Skills</th>
+                <th class="cell100 column4">Exp</th>
+                <th class="cell100 column5">Current company</th>
+                <th class="cell100 column6">PAN</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div class="table100-body js-pscroll">
+          <table >
+            <tbody *ngFor="let item of reqdata " style="cursor: pointer;">
+              <tr class="row100 body text-center">
+                <td class="cell100 column1">{{item.candidatefirstname + item.candidatelastname}}</td>
+                <td class="cell100 column2">{{item.currentlocation}}</td>
+                <td class="cell100 column3">{{item.skills}}</td>
+                <td class="cell100 column4">{{item.totalexp}}</td>
+                <td class="cell100 column5">{{item.currentcompany}}</td>
+                <td class="cell100 column6">{{item.pannumber}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

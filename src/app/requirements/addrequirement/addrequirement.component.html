@@ -1,0 +1,300 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <div class="card mt-4 mb-4">
+    <div class="card-header">
+      <header class="float-start" style="font-weight: 800">
+        Add-requirement
+      </header>
+      <button
+        class="btn btn-warning btn-sm float-end"
+        [routerLink]="['/requirements']"
+      >
+        Requirement-list
+      </button>
+    </div>
+    <div class="card-body text-center">
+      <form [formGroup]="requirementForm" (ngSubmit)="onsubmit()">
+        <header class="content-header">Requirement Information</header>
+        <div class="row mt-3">
+          <div class="col-lg-6 col-md-6">
+            <div class="row mb-3">
+              <label for="reqname" class="col-sm-2 col-form-label"
+                >Requirement Name<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="RequirementName"
+                  id="reqname"
+                />
+              </div>
+              <!-- <small
+                      *ngIf="registerFormcontrol.RequirementName.invalid && isSubmitted"
+                      class="error"
+                      >First Name is required
+                    </small> -->
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="row mb-3">
+              <label for="closedate" class="col-sm-2 col-form-label"
+                >Closing Date<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="date"
+                  class="form-control"
+                  formControlName="ClosedDate"
+                  id="closedate"
+                />
+              </div>
+              <!-- <small
+                      *ngIf="registerFormcontrol.firstname.invalid && isSubmitted"
+                      class="error"
+                      >First Name is required
+                    </small> -->
+            </div>
+          </div>
+        </div>
+        <header class="content-header">Custom Information</header>
+        <div class="row mt-4">
+          <div class="col-lg-6">
+            <div class="row mb-3">
+              <label for="skillset" class="col-sm-2 col-form-label"
+                >Skill-set<span id="req">*</span></label
+              >
+              <div class="col-sm-6">
+                <!-- <input
+                  type="text"
+                  class="form-control"
+                  formControlName="skillset"
+                  id="skillset"
+                /> -->
+                <ng-multiselect-dropdown
+                [placeholder]="'custom placeholder'"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                formControlName="Skills"
+              >
+              </ng-multiselect-dropdown>
+              </div>
+              <!-- <small
+                            *ngIf="registerFormcontrol.firstname.invalid && isSubmitted"
+                            class="error"
+                            >First Name is required
+                          </small> -->
+          <div class="col-sm-2">
+            <button class="btn btn-primary" type="button">Add Skill</button>
+          </div>
+            </div>
+            <div class="row mb-3">
+              <label for="positions" class="col-sm-2 col-form-label"
+                >No Of Positions<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="NoOfPosts"
+                  id="positions"
+                />
+              </div>
+              <!-- <small
+                            *ngIf="registerFormcontrol.firstname.invalid && isSubmitted"
+                            class="error"
+                            >First Name is required
+                          </small> -->
+            </div>
+            <div class="row mb-3">
+              <label for="suggestion" class="col-sm-2 col-form-label"
+                >Suggestion</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="Suggestion"
+                  id="suggestion"
+                />
+              </div>
+              <!-- <small
+                            *ngIf="registerFormcontrol.firstname.invalid && isSubmitted"
+                            class="error"
+                            >First Name is required
+                          </small> -->
+            </div>
+            <div class="row mb-3">
+              <label for="maxctc" class="col-sm-2 col-form-label"
+                >Max-CTC<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="MaxCTC"
+                  id="maxctc"
+                />
+              </div>
+              <!-- <small
+                            *ngIf="registerFormcontrol.firstname.invalid && isSubmitted"
+                            class="error"
+                            >First Name is required
+                          </small> -->
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <label for="exprange" class="col-sm-2 col-form-label"
+                >Exp-range<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+              <select class="form-select" formControlName="Experience">
+                <option *ngFor="let item of expList">{{item.year}}</option>
+            </select>
+            </div>
+          </div>
+
+            <div class="row mt-3">
+                <label for="jobcode" class="col-sm-2 col-form-label"
+                >Job Code<span id="req">*</span></label
+              >
+                <div class="col-lg-4">
+                    <input type="text" placeholder="Job Code"  formControlName="JobCode"
+                    />
+                  </div>
+
+            </div>
+            <div class="row mt-4">
+                <label for="description" class="col-sm-2 col-form-label"
+                  >Description</label
+                >
+                <div class="col-sm-10">
+                  <textarea
+                    type="text"
+                    rows="4"
+                    cols="50"
+                    class="form-control"
+                    formControlName="Description"
+                    id="address"
+                  ></textarea>
+                </div>
+              </div>
+
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row mt-2 mb-2">
+                    <label for="reqtype" class="col-sm-2 col-form-label"
+                      >Requirement Type<span id="req">*</span></label
+                    >
+                    <div class="col-sm-10">
+                      <select
+                        class="form-select"
+                        formControlName="RequirementType"
+                        aria-label="Default select example"
+                      >
+                        <!-- <option>Default</option> -->
+                        <option value="contractual">Contractual</option>
+                        <option value="directhire">Direct Hire</option>
+                      </select>
+                    </div>
+                    <!-- <small
+                      *ngIf="registerFormcontrol.title.invalid && isSubmitted"
+                      class="error"
+                      >Role is required
+                    </small> -->
+                  </div>
+                  <div class="row mb-3">
+                    <label for="location" class="col-sm-2 col-form-label"
+                      >Location<span id="req">*</span></label
+                    >
+                    <div class="col-sm-10">
+                      <select
+                        class="form-select"
+                        formControlName="Location"
+                        aria-label="Default select example"
+                      >
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="noida">Noida</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="gurgaon">Gurgaon</option>
+                      </select>
+                    </div>
+                    <!-- <small
+                      *ngIf="registerFormcontrol.title.invalid && isSubmitted"
+                      class="error"
+                      >Role is required
+                    </small> -->
+                  </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="row mt-2">
+              <label for="jobcode" class="col-sm-2 col-form-label"
+              >Expected CV's<span id="req">*</span></label
+            >
+              <div class="col-lg-3">
+                <input type="text" placeholder="Expected No.of Cv's"  formControlName="ecvs"
+                />
+              </div>
+              </div>
+                <!-- <div class="row mt-2">
+                    <label for="country" class="col-sm-2 col-form-label"
+                      >Country<span id="req">*</span></label
+                    >
+                    <div class="col-sm-10">
+                      <select
+                        class="form-select"
+                        formControlName="country"
+                        aria-label="Default select example"
+                      >
+                      <option value="india">India</option>
+                      <option value="usa">USA</option>
+                      <option value="suadi">Suadi Arabia</option>
+                      <option value="qatar">Qatar</option>
+                      </select>
+                    </div>
+                    <small
+                      *ngIf="registerFormcontrol.title.invalid && isSubmitted"
+                      class="error"
+                      >Role is required
+                    </small>
+                  </div> -->
+                  <div class="row mt-4">
+                    <label for="assignto" class="col-sm-2 col-form-label"
+                      >Client<span id="req">*</span></label
+                    >
+                    <div class="col-sm-10">
+                      <select
+                        class="form-select"
+                        formControlName="ClientId"
+                        aria-label="Default select example"
+                      >
+                      <option *ngFor="let item of client" value="{{item._id}}">{{item.clientName}}</option>
+                    </select>
+                    </div>
+                    <!-- <small
+                      *ngIf="registerFormcontrol.title.invalid && isSubmitted"
+                      class="error"
+                      >Role is required
+                    </small> -->
+                  </div>
+            </div>
+        </div>
+
+          <div class="btn">
+            <button class="btn btn-danger" type="reset">Cancel</button>
+            <button class="btn btn-success" type="submit">Submit</button>
+            <button class="btn btn-secondary" type="reset">Reset</button>
+          </div>
+      </form>
+    </div>
+    <!-- <div class="card-footer text-muted">2 days ago</div> -->
+  </div>
+</div>

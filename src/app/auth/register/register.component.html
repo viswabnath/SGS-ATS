@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6 col-md-6 content">
+      <div class="brand">
+        <a class="navbar-brand" href="#">
+          <img src="../../../assets/SGS.jpg" alt="" />
+        </a>
+      </div>
+      <div class="main-content">
+        <h2 style="font-weight: 600">Advanced Application-Tracking System</h2>
+        <p class="small mt-3">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 login">
+      <div class="top float-end small top" style="color: rgb(173, 172, 172)">
+        Already have account?
+        <button class="btn btn-primary" [routerLink]="['/']">
+          Login
+        </button>
+      </div>
+      <div class="login-content">
+        <form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control input-sm" formControlName="firstname" id="firstname"
+              placeholder="firstname" />
+            <label for="floatingInput inputsm ">First Name</label>
+            <small *ngIf="registerFormcontrol.firstname.invalid && isSubmitted" class="error">First Name is required
+            </small>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control input-sm" formControlName="lastname" id="lastname"
+              placeholder="lastname" />
+            <label for="floatingInput inputsm ">Last Name</label>
+            <small *ngIf="registerFormcontrol.lastname.invalid && isSubmitted" class="error">Last Name is required
+            </small>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control input-sm" formControlName="email" id="email" placeholder="email" />
+            <label for="floatingInput inputsm ">Email</label>
+            <small *ngIf="registerFormcontrol.email.invalid && isSubmitted" class="error"><span
+                *ngIf="registerFormcontrol.email.errors?.required">email is required</span>
+              <span *ngIf="registerFormcontrol.email.errors?.email">email is invalid</span></small>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control input-sm" formControlName="password" id="password"
+              placeholder="password" />
+            <label for="floatingInput inputsm ">Password</label>
+            <small *ngIf="registerFormcontrol.password.invalid && isSubmitted" class="error">Password is required
+            </small>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control input-sm" formControlName="confirmpassword" id="cpassword"
+              placeholder="Confirm password" />
+            <label for="floatingInput inputsm "> Confirm Password</label>
+            <small *ngIf="registerFormcontrol.confirmpassword.invalid && isSubmitted" class="error">confirm Password is
+              required
+            </small>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control input-sm" formControlName="mobile" id="mobile"
+              placeholder="mobile" />
+            <label for="floatingInput inputsm "> Mobile Number</label>
+            <small *ngIf="registerFormcontrol.mobile.invalid && isSubmitted" class="error">mobile number is required
+            </small>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select class="form-select input-sm" formControlName="roleApplied" aria-label="Default select example">
+              <option value="ADMIN">Admin</option>
+              <option value="EMPLOYEE">Internal-Recruiter</option>
+              <option value="JOBSEEKER">Job-seeker</option>
+              <option value="MANAGER">Manager</option>
+              <option value="COMPANY">Client</option>
+              <option value="FREELANCE-RECRUITER">Freelancer</option>
+              <option value="OTHER">Other</option>
+              <option value="INTERN">Intern</option>
+
+              <!-- "JOBSEEKER", "COMPANY","ADMIN","EMPLOYEE","FREELANCE-RECRUITER","INTERN","OTHER","MANAGER" -->
+
+            </select>
+            <small *ngIf="registerFormcontrol.roleApplied.invalid && isSubmitted" class="error">Role is required
+            </small>
+          </div>
+
+          <div class="btn">
+            <button class="btn btn-danger" type="reset">Cancel</button>
+            <button class="btn btn-success" type="submit">Submit</button>
+            <button class="btn btn-secondary" type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

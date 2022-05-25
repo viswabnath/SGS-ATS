@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6 col-md-6 content">
+      <div class="brand">
+        <a class="navbar-brand" href="#">
+          <img src="../../../assets/SGS.jpg" alt="" />
+        </a>
+      </div>
+      <div class="main-content">
+        <h2 style="font-weight: 600">Advanced Application-Tracking System</h2>
+        <p class="small mt-3">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 login">
+      <div class="top float-end small top" style="color: rgb(173, 172, 172)">
+        Don't you have account?
+        <button class="btn btn-primary" [routerLink]="['/register']">
+          Register
+        </button>
+      </div>
+      <div class="login-content">
+        <form [formGroup]="loginFormGroup" (ngSubmit)="onsubmit()">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control input-sm" id="floatingInput" placeholder="name@example.com"
+              formControlName="email" />
+            <label for="floatingInput inputsm ">Email address</label>
+            <small *ngIf="loginForm.email.invalid && isSubmitted" class="error"><span
+                *ngIf="loginForm.email.errors?.required">email is required</span>
+              <span *ngIf="loginForm.email.errors?.email">email is invalid</span></small>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control input-sm" id="floatingPassword" placeholder="Password"
+              formControlName="password" />
+            <label for="floatingPassword inputsm ">Password</label>
+            <small *ngIf="loginForm.password.invalid && isSubmitted" class="error">Password is required
+            </small>
+          </div>
+
+          <div class="center mt-4">
+            <button class="btn btn-primary btn-mb" type="submit">Login</button>
+          </div>
+          <!-- <div class="center mt-4">
+            <a [routerLink]="['/register']">Forgot password?</a>
+          </div> -->
+        </form>
+      </div>
+      <hr />
+      <div class="footer pb-3">
+        <h5 style="text-align: center; padding-top:30px;">Connect with us</h5>
+        <div class="social mt-4 mb-4">
+          <a href=""><i class="fa fa-2x fa-facebook"></i></a>
+          <a href=""><i class="fa fa-2x fa-linkedin"></i></a>
+          <a href=""><i class="fa fa-2x fa-instagram"></i></a>
+        </div>
+      </div>
+      <!-- <div class="p-col-12" *ngIf="isSubmitted && authError">
+        <small class="p-error">{{ authMessage }}</small>
+      </div> -->
+    </div>
+  </div>
+</div>

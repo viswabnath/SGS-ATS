@@ -1,0 +1,26 @@
+<app-header></app-header>
+<!-- Hi, {{rolename}}. You're assigning internal recuiters for {{requirementname}}
+* select Option -- list of internal recuriters
+* submit button -->
+
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-body">
+      <h1>Hi {{loginname}} Welcome!</h1>
+      <h3 class="small mt-5">
+        you're assigning internal recuriters for {{singledata?.RequirementName}}
+      </h3>
+      <form [formGroup]="requirementForm" (ngSubmit)="onsubmit()">
+        <div class="row mb-3">
+          <label for="skillset" class="col-sm-2 col-form-label">Internal Recruiters<span id="req">*</span></label>
+          <div class="col-sm-6">
+            <ng-multiselect-dropdown [placeholder]="'Internal Recruiters'" [settings]="dropdownSettings"
+              [data]="dropdownList" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
+              formControlName="AssignedIA">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success sm" style="margin:auto">Submit</button>
+      </form>
+    </div>
+  </div>

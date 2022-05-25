@@ -1,0 +1,111 @@
+<app-header></app-header>
+
+<div class="container">
+    <!-- <div class="card mt-3"> -->
+        <div class="card-header text-white bg-dark clearfix ch mt-2">
+            <header class="float-start" style="font-weight: 800;"  style="cursor: pointer;">Roles</header>
+            <button class="btn btn-success btn-sm float-end " [routerLink]="['addrole']" >Add New Role</button>
+            <p class="btn btn-success btn-sm float-end " style='margin-right:16px' (click)="modulebutton()">Add New Module</p>
+            <button class="btn btn-success btn-sm float-end " [routerLink]="['addpermissions']" style='margin-right:16px'>Create Permissions</button>
+          </div>
+
+
+          <div class="card text-center mt-5" *ngIf="moduleclicked">
+            <form [formGroup]="moduleForm" (ngSubmit)="onsubmit()">
+              <div class="row mb-3 mt-5">
+                <label for="firstname" class="col-sm-2 col-form-label"
+                  >Module Name<span id="req">*</span></label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="moduleName"
+                    id="firstname"
+                  />
+                </div>
+                <small
+                *ngIf="registerFormcontrol.moduleName.invalid && isSubmitted"
+                class="error"
+                >Module Name is required
+              </small>
+              </div>
+              <div class="btn text-center mt-4">
+                <button class="btn btn-danger" type="button" (click)="oncancel()" >Cancel</button>
+                <button class="btn btn-success" type="submit" >Submit</button>
+              </div>
+            </form>
+          </div>
+
+
+          <div class="card text-center mt-5" *ngIf="editClicked">
+            <form [formGroup]="editForm" (ngSubmit)="onsend()">
+              <div class="row mb-3 mt-5">
+                <label for="firstname" class="col-sm-2 col-form-label"
+                >Role Name : <span id="req"> {{roleNamee}}</span></label
+              >
+              </div>
+              <div class="row mb-3 mt-5">
+                <label for="firstname" class="col-sm-2 col-form-label"
+                  >Reports to<span id="req">*</span></label
+                >
+                <div class="col-sm-10">
+                  <select
+                    class="form-select"
+                    formControlName="reportsTo"
+                    aria-label="Default select example"
+                  >
+                  <option *ngFor="let item of rolesList" value="{{item._id}}">{{item.roleName}}</option>
+                  </select>
+                </div>
+                <small
+                *ngIf="EditFormcontrol.reportsTo.invalid && isSubmitted"
+                class="error"
+                >Choose role to report
+              </small>
+              </div>
+              <div class="btn text-center mt-4">
+                <button class="btn btn-danger" type="button" (click)="oncancel()" >Cancel</button>
+                <button class="btn btn-success" type="submit" >Submit</button>
+              </div>
+            </form>
+          </div>
+
+
+            <div class="card-body">
+                <div class="table100 ver5 m-b-110">
+                    <div class="table100-head ">
+                      <table>
+                        <thead>
+                          <tr class="row100 head text-center" >
+                            <th class="cell100 column1">Role-Name</th>
+                            <th class="cell100 column2">Reports-to</th>
+                            <!-- <th class="cell100 column2">Reports-to </th>
+                            <th class="cell100 column3">Profile</th> -->
+                            <th class="cell100 column3">Action</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                
+                    <div class="table100-body js-pscroll" >
+                      <table>
+                        <tbody>
+                          <tr class="row100 body text-center" *ngFor="let item of rolesList" >
+                            <td class="cell100 column1">{{item.roleName}}</td> 
+                            <td class="cell100 column2">{{item?.reportsTo?.roleName}}</td>
+                            <!-- <td class="cell100 column3">{{item.Profile}}</td> -->
+                            <td class="cell100 column3">
+                                <button class="btn btn-primary btn-sm" (click)="view(item.roleName,item._id)">View</button>
+                                <button class="btn btn-secondary btn-sm" (click)="edit(item._id,item.roleName)">Edit</button>
+                          </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+            
+                  </div>
+            </div>
+    <!-- </div> -->
+</div>
+

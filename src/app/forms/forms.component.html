@@ -1,0 +1,377 @@
+<div class="container">
+    <div class="pt-4">
+      <div class="brand">
+        <a class="navbar-brand" href="#" style="color: rgb(10, 10, 10)">
+          <img
+            src="http://www.sellcraft.net/wp-content/uploads/2017/12/Sellcraft-PNG-e1624107923554.png"
+            alt=""
+            width="200"
+            height="100"
+          />
+          SGS-ATS
+        </a>
+      </div>
+      <div class="hr mb-2"></div>
+    </div>
+    <header style="color: black; font-weight: 800">Register Here!</header>
+    <div class="contentform mt-2">
+      <form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="content-header mb-3">
+              <header>Login Details</header>
+            </div>
+            <div class="row mb-3">
+              <label for="firstname" class="col-sm-2 col-form-label"
+                >First Name<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="firstname"
+                  id="firstname"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.firstname.invalid && isSubmitted"
+                class="error"
+                >First Name is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="lastname" class="col-sm-2 col-form-label"
+                >Last Name<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="lastname"
+                  id="lastname"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.lastname.invalid && isSubmitted"
+                class="error"
+                >Last Name is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="email" class="col-sm-2 col-form-label"
+                >Email<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  id="email"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.email.invalid && isSubmitted"
+                class="error"
+                ><span *ngIf="registerFormcontrol.email.errors?.required"
+                  >email is required</span
+                >
+                <span *ngIf="registerFormcontrol.email.errors?.email"
+                  >email is invalid</span
+                ></small
+              >
+            </div>
+            <div class="row mb-3">
+              <label for="username" class="col-sm-2 col-form-label"
+                >User Name<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="username"
+                  id="username"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.username.invalid && isSubmitted"
+                class="error"
+                >User Name is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="password" class="col-sm-2 col-form-label"
+                >Password<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                  id="password"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.password.invalid && isSubmitted"
+                class="error"
+                >Password is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="cpassword" class="col-sm-2 col-form-label"
+                >confirm password<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="cpassword"
+                  id="cpassword"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.cpassword.invalid && isSubmitted"
+                class="error"
+                >confirm Password is required
+              </small>
+            </div>
+  
+            <div class="content-header mb-3">
+              <header>Contact Details</header>
+            </div>
+            <div class="row mb-3">
+              <label for="mobile" class="col-sm-2 col-form-label"
+                >Mobile<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="mobile"
+                  id="mobile"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.mobile.invalid && isSubmitted"
+                class="error"
+                >mobile number is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="homephone" class="col-sm-2 col-form-label"
+                >Home Phone</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="homephone"
+                  id="homephone"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="officephone" class="col-sm-2 col-form-label"
+                >Office Phone</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="officephone"
+                  id="officephone"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="fax" class="col-sm-2 col-form-label">Fax</label>
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="fax"
+                  id="fax"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="otheremail" class="col-sm-2 col-form-label"
+                >Other Email</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="otheremail"
+                  id="otheremail"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="content-header mb-3">
+              <header>More Information</header>
+            </div>
+            <div class="row mb-3">
+              <label for="title" class="col-sm-2 col-form-label"
+                >Title<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="title"
+                  id="title"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.title.invalid && isSubmitted"
+                class="error"
+                >title is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="role" class="col-sm-2 col-form-label"
+                >Role<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <select
+                  class="form-select"
+                  formControlName="role"
+                  aria-label="Default select example"
+                >
+                  <option value="admin">Admin</option>
+                  <option value="recruiter">Recruiter</option>
+                  <option value="freelancer">Freelancer</option>
+                </select>
+              </div>
+              <small
+                *ngIf="registerFormcontrol.title.invalid && isSubmitted"
+                class="error"
+                >Role is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="department" class="col-sm-2 col-form-label"
+                >Department<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="department"
+                  id="department"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.department.invalid && isSubmitted"
+                class="error"
+                >department is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="signature" class="col-sm-2 col-form-label"
+                >Signature<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="signature"
+                  id="signature"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.signature.invalid && isSubmitted"
+                class="error"
+                >signature is required
+              </small>
+            </div>
+            <div class="content-header mt-4 mb-3">
+              <header>Address Details</header>
+            </div>
+            <div class="row mb-3">
+              <label for="country" class="col-sm-2 col-form-label"
+                >Country<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="country"
+                  id="country"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.country.invalid && isSubmitted"
+                class="error"
+                >country is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="city" class="col-sm-2 col-form-label"
+                >City<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="city"
+                  id="city"
+                />
+              </div>
+              <small
+                *ngIf="registerFormcontrol.city.invalid && isSubmitted"
+                class="error"
+                >city is required
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label for="state" class="col-sm-2 col-form-label">State</label>
+              <div class="col-sm-10">
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="state"
+                  id="state"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="postalcode" class="col-sm-2 col-form-label"
+                >Postal Code</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="postalcode"
+                  id="postalcode"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="address" class="col-sm-2 col-form-label"
+                >Street Address</label
+              >
+              <div class="col-sm-10">
+                <textarea
+                  type="text"
+                  rows="4"
+                  cols="50"
+                  class="form-control"
+                  formControlName="address"
+                  id="address"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn">
+          <button class="btn btn-danger" type="reset">Cancel</button>
+          <button class="btn btn-success" type="submit">Submit</button>
+          <button class="btn btn-secondary" type="reset">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

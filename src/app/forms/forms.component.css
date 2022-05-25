@@ -1,0 +1,30 @@
+.contentform{
+    padding: 20px ;
+    border: 2px solid rgb(124, 124, 124);
+    border-radius: 20px;
+}
+
+.hr{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgb(65, 121, 241);
+}
+
+.content-header{
+    text-align: center;
+    width: 40%;
+    background-color: rgb(108, 156, 245);
+    padding:10px 10px;
+    border-radius: 30px 15px;
+}
+
+header{
+    color:whitesmoke;
+    font-weight: 600;
+}
+
+#req{
+    color: tomato;
+}
+
+

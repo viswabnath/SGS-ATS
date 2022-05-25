@@ -1,0 +1,181 @@
+<app-header></app-header>
+<div class="container">
+  <div class="card-header text-white bg-dark clearfix ch mt-2">
+    <header class="float-start" style="font-weight: 800;" (click)="back()" style="cursor: pointer;">User-Management
+    </header>
+    <button class="btn btn-outline-primary btn-sm float-end " (click)="leveOne()">Level-1 approved-list</button>
+    <button class="btn btn-outline-primary btn-sm float-end " style='margin-right:16px'
+      (click)="leveTwo()">Approved-list</button>
+  </div>
+
+  <div class="content-wrapper mt-2" *ngIf="!templateOne && !templateTwo">
+    <div class="card-header" style="text-align:center; font-size: larger;">
+      <b>List of User's to be approved</b>
+    </div>
+    <div class="card-body">
+      <div style="padding-top:20px;padding-bottom:20px;">
+        <input class="form-control" type="text" placeholder="Search.......">
+      </div>
+      <div class="table100 card">
+        <div class="table100-head">
+          <table>
+            <thead>
+              <tr class="row100 head">
+                <th class="cell100 column1">Name</th>
+                <th class="cell100 column2">Email </th>
+                <th class="cell100 column3">Role-applied</th>
+                <th class="cell100 column4">Mobile</th>
+                <th class="cell100 column5">Approval-type</th>
+                <th class="cell100 column6"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div class="table100-body js-pscroll">
+          <table>
+            <tbody>
+              <h5 *ngIf="approvallistData.length < 1">No users found!</h5>
+              <tr class="row100 body" *ngFor="let item of approvallistData">
+                <div style="margin: 10px 10px; border: 3px silver solid;  border-radius: 10px; ">
+                <td class="cell100 column1">{{item.firstname}} {{item.lastname}}</td>
+                <td class="cell100 column2">{{item.email}}</td>
+                <td class="cell100 column3">{{item.roleApplied}}</td>
+                <td class="cell100 column4">{{item.mobile}}</td>
+                <td class="cell100 column5">
+                  <div class="">
+                    <form [formGroup]="selectForm">
+                      <select class="form-select" aria-label="Default select example" formControlName="selectedValue"
+                        (change)="devent($event)">
+                        <option value="" disabled selected hidden>Choose Approval Type...</option>
+                        <option value="level-1">Level-1</option>
+                        <option value="level-2">Level-2</option>
+                      </select>
+                    </form>
+                  </div>
+                </td>
+                <td class="cell100 column6">
+                  <button class="btn  btn-outline-success btn-sm" (click)="approveToLevel1(item._id)">&#10004;</button>
+                  <button class="btn btn-outline-danger btn-sm">X</button>
+                </td>
+                </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="content-wrapper mt-3" *ngIf="templateOne">
+    <div class="card-header" style="text-align:center; font-size: larger;">
+      <b>List of Level1 approved Users</b>
+    </div>
+    <div class="card-body">
+      <div style="padding-top:20px;padding-bottom:20px;">
+        <input class="form-control" type="text" placeholder="Search.......">
+      </div>
+      <div class="table100 card">
+        <div class="table100-head">
+          <table>
+            <thead>
+              <tr class="row100 head">
+                <th class="cell100 column1">Name</th>
+                <th class="cell100 column2">Email </th>
+                <th class="cell100 column3">Role-applied</th>
+                <th class="cell100 column4">Mobile</th>
+                <th class="cell100 column5">Approval-type</th>
+                <th class="cell100 column6"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div class="table100-body js-pscroll">
+          <table>
+            <tbody>
+              <h5 *ngIf="approvallistDataOne.length < 1">No users found!</h5>
+              <tr class="row80 body" *ngFor="let item of approvallistDataOne">
+                <div style="margin: 10px 10px; border: 3px silver solid;  border-radius: 10px; ">
+                <td class="cell80 column1">{{item.firstname}} {{item.lastname}}</td>
+                <td class="cell80 column2">{{item.email}}</td>
+                <td class="cell80 column3">{{item.roleApplied}}</td>
+                <td class="cell80 column4">{{item.mobile}}</td>
+                <td class="cell80 column5">Level 1</td>
+                <td class="cell80 column6">
+                  <button class="btn btn-outline-success btn-sm" (click)="approveFromlevel1(item._id)"> &#10004;</button>
+                  <button class="btn btn-outline-danger btn-sm">X</button>
+                </td>
+                </div>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="content-wrapper mt-3" *ngIf="templateTwo">
+    <div class="card-header" style="text-align:center; font-size: larger;">
+      <b>Approved list of users</b>
+    </div>
+    <div class="card-body">
+      <div style="padding-top:20px;padding-bottom:20px;">
+        <input class="form-control" type="text" placeholder="Search.......">
+      </div>
+      <div class="table100 card">
+        <div class="table100-head">
+          <table>
+            <thead>
+              <tr class="row100 head">
+                <th class="cell100 column1">Name</th>
+                <th class="cell100 column2">Email </th>
+                <th class="cell100 column3">Role-applied</th>
+                <th class="cell100 column4">Mobile</th>
+                <th class="cell100 column5">Approval-type</th>
+                <th class="cell100 column6"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div class="table100-body js-pscroll">
+          <table>
+            <tbody>
+              <h5 *ngIf="approvallistDataTwo.length < 1">No users found!</h5>
+                <tr class="row100 body" *ngFor="let item of approvallistDataTwo">
+                   <div style="margin: 10px 10px; border: 3px silver solid;  border-radius: 10px; ">
+                  <td class="cell100 column1">{{item.firstname}} {{item.lastname}}</td>
+                  <td class="cell100 column2">{{item.email}}</td>
+                  <td class="cell100 column3">{{item.roleApplied}}</td>
+                  <td class="cell100 column4">{{item.mobile}}</td>
+                  <td class="cell100 column5">Level 2</td>
+                  <td class="cell100 column6">
+                    <div class="">
+                      <form [formGroup]="selectForm">
+                        <select class="form-select" aria-label="Default select example" formControlName="selectedValue"
+                          (change)="fevent($event)">
+                          <option value="" disabled selected hidden>Assign Role</option>
+                          <option *ngFor="let itm of listData" value={{itm._id}}>{{itm.roleName}}</option>
+                        </select>
+                      </form>
+                    </div>
+                  </td>
+                  <td class="cell100 column6">
+                    <button class="btn btn-outline-success btn-sm" style="border-radius: 30%;" (click)="assignrole(item._id)"> &#10004;</button>
+                    <button class="btn btn-outline-danger btn-sm" style="border-radius: 30%;">X</button>
+                  </td>
+                </div>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>

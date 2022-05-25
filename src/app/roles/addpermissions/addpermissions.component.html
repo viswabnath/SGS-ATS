@@ -1,0 +1,118 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header text-white bg-dark clearfix ch mt-2">
+      <header class="float-start" style="font-weight: 800;"  style="cursor: pointer;">List of Permissions</header>
+      <p class="btn btn-success btn-sm float-end " style='margin-right:16px' [routerLink]="['../../roles']" >Back</p>
+    </div>
+    <div class="card-body">
+
+      <p class="btn btn-primary btn-sm" (click)="modulebutton()">Create New Permissions</p>
+
+      <div class="card mt-3 mb-4">
+        <div class="card text-center mt-5" *ngIf="moduleclicked">
+          <form [formGroup]="moduleForm" (ngSubmit)="onsubmit()">
+           
+            <div class="row mb-3 mt-5">
+              <label for="firstname" class="col-sm-2 col-form-label"
+                >Permission Name<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <input
+                type="text"
+                class="form-control"    
+                formControlName="permissionName"
+              >
+              </div>
+              <small
+              *ngIf="registerFormcontrol.permissionName.invalid && isSubmitted"
+              class="error"
+              >Permission Name is required
+            </small>
+            </div>
+
+            <div class="row mb-3 mt-5">
+              <label for="firstname" class="col-sm-2 col-form-label"
+                >Module Name<span id="req">*</span></label
+              >
+              <div class="col-sm-10">
+                <select
+                class="form-select"
+                formControlName="modules"
+                aria-label="Default select example"
+                multiple
+              >
+              <option *ngFor="let item of moduleList" value="{{item._id}}">{{item.moduleName}}</option>
+              </select>
+              </div>
+              <small
+              *ngIf="registerFormcontrol.modules.invalid && isSubmitted"
+              class="error"
+              >Module Name is required
+            </small>
+            </div>
+
+
+            <div class="row mb-3 mt-5">
+                <label for="firstname" class="col-sm-2 col-form-label"
+                  >Module Name<span id="req">*</span></label
+                >
+                <div class="col-sm-10">
+                  <select
+                  class="form-select"
+                  formControlName="permissionType"
+                  aria-label="Default select example"
+                >
+                <option value="READ">READ</option>
+                <option value="WRITE">WRITE</option>
+                <option value="DELETE">DELETE</option>     
+                </select>
+                </div>
+                <small
+                *ngIf="registerFormcontrol.permissionType.invalid && isSubmitted"
+                class="error"
+                >Module Name is required
+              </small>
+              </div>
+
+            <div class="btn text-center mt-4">
+              <button class="btn btn-danger" type="button" (click)="oncancel()" >Cancel</button>
+              <button class="btn btn-success" type="submit" >Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- <h5>Permission Types for the role of <b>{{role}}</b></h5> -->
+      <div class="row">
+        <div class="col-lg-4 col-md-6" *ngFor="let item of permissions ,let i =index ">
+          <div class="card mt-3">
+            <div class="card-header mt-2 ">Permission Name : <b>{{item.permissionName}}</b>
+              <p class="float-end"><i class="fa fa-times-circle" aria-hidden="true" style="color: red;" (click)="removeModule(item._id )"></i></p>
+            </div>
+            <div class="card-header mt-2 ">Permission Type : <b>{{item.permissionType}}</b></div>
+            <div class="card-body" >
+              <div class="mb-5">
+                <h5 class="float-start">Modules</h5>
+              </div>
+              <!-- <hr class="mb-4 mt-4"> -->
+              <div class="vstack gap-3 mt-2" *ngFor="let module of moduletype[i]">
+                <div class="bg-light border" style="padding: 5px 5px;">
+                  <p class="float-start">{{module.moduleName}}</p>
+                  <!-- <p class="float-end"><i class="fa fa-times-circle" aria-hidden="true" style="color: red;" ></i></p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- (click)="removeModule(module._id , item._id )" -->
