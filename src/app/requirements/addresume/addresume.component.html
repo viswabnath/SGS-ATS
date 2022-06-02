@@ -1,0 +1,30 @@
+<header style="background-color:rgb(108, 156, 245); height: 40px; width:auto"></header>
+
+<div class="container box">
+
+<p>Upload the resume of <b>harsha</b></p>
+<!-- <div>
+  <form [formGroup]="myForm" (ngSubmit)="onsubmit()">
+  <div class="form-group">
+      <label for="file">File</label>
+      <input
+          formControlName="file"
+          id="file"
+          type="file"
+          class="form-control"
+          (change)="onFileChange($event)">
+
+  </div>
+
+  <button class="btn btn-primary" type="submit">Submit</button>
+
+    </form>
+</div> -->
+
+<input type="file" (change)="onFileSelected($event)">
+<div class="file-upload">
+   {{fileName || "No file uploaded yet."}}
+    <button type="button" color="primary" class="upload-btn" (click)="onUpload()">Upload</button>
+</div>
+
+</div>

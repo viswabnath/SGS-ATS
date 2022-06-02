@@ -6,6 +6,7 @@ import { RequirementsComponent } from './requirements.component';
 import { ViewreqComponent } from './viewreq/viewreq.component';
 import { EditreqComponent } from './editreq/editreq.component';
 import { AssignComponent } from './assign/assign.component';
+import { AddresumeComponent } from './addresume/addresume.component';
 
 const routes: Routes = [
 { path: '', component: RequirementsComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
 { path: 'requirements/view', component: ViewreqComponent  },
 { path: 'requirements/edit', component: EditreqComponent  },
 { path: 'requirements/assign', component: AssignComponent  },
+{ path: 'requirements/addresume', component: AddresumeComponent},
 ];
 
 @NgModule({

@@ -10,6 +10,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ViewreqComponent } from './viewreq/viewreq.component';
 import { EditreqComponent } from './editreq/editreq.component';
 import { AssignComponent } from './assign/assign.component';
+import { AddresumeComponent } from './addresume/addresume.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AssignComponent } from './assign/assign.component';
     AddcandidateComponent,
     ViewreqComponent,
     EditreqComponent,
-    AssignComponent
+    AssignComponent,
+    AddresumeComponent
   ],
   imports: [
     CommonModule,

@@ -207,7 +207,7 @@
               [data]="dropdownList"
               (onSelect)="onItemSelect($event)"
               (onSelectAll)="onSelectAll($event)"
-              formControlName="Skills"
+              formControlName="candidateskills"
             >
             </ng-multiselect-dropdown>
             </div>
@@ -349,7 +349,7 @@
               <tr class="row100 body text-center">
                 <td class="cell100 column1">{{item.candidatefirstname + item.candidatelastname}}</td>
                 <td class="cell100 column2">{{item.currentlocation}}</td>
-                <td class="cell100 column3">{{item.skills}}</td>
+                <td class="cell100 column3">{{item.candidateskills}}</td>
                 <td class="cell100 column4">{{item.totalexp}}</td>
                 <td class="cell100 column5">{{item.currentcompany}}</td>
                 <td class="cell100 column6">{{item.pannumber}}</td>

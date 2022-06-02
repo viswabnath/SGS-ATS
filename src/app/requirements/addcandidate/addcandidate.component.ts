@@ -5,8 +5,10 @@ import state from '../../shared/jsonfiles/state.json';
 import ctc from '../../shared/jsonfiles/ctc.json';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ReqService } from './../req.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AddresumeComponent } from '../addresume/addresume.component';
+
 
 
 @Component({
@@ -20,14 +22,20 @@ export class AddcandidateComponent implements OnInit {
   stateList: { name: string }[] = state;
   ctcList: { ctc: string }[] = ctc;
   requirementForm!: FormGroup;
+
   isSubmitted = false;
   dropdownList: any[] = [];
   selectedItems: any[] = [];
+  allskills:any=[];
   dropdownSettings: IDropdownSettings = {};
   number: any;
   singledata:any;
   reqdata:any;
-  constructor(private formbuilder: FormBuilder , private reqservice:ReqService, private activer:ActivatedRoute) { }
+  fileName = '';
+  candidateid :any;
+  candidatename:any;
+  constructor(private formbuilder: FormBuilder , private reqservice:ReqService, private activer:ActivatedRoute,
+    private route : Router) { }
 
   ngOnInit(): void {
 
@@ -54,13 +62,10 @@ export class AddcandidateComponent implements OnInit {
       });
     })
 
-
-
-
     this._initForm();
     this.dropdownList = [
-      {skill:'JAVA'},{skill:'HTML'},{skill:'CSS'},{skill:'SQL'},{skill:'MONGODB'},{skill:'REACT'},{skill:'ANGULAR'},{skill:'ANGULARJS'},
-     {skill:'MicroServices'},{skill:'JENKIENS'},{skill:'IONIC'},{skill:'DEVEOPS'},{skill:'AWS'},{skill:'CLOUD'},{skill:'AZURE'},{skill:'NODEJS'}
+      'JAVA' , 'HTML' , 'CSS' , 'SQL' , 'HANA' , 'MONGODB', 'REACT' , 'ANGULAR' , 'ANGULARJS' , 'MICROSERVICES' , 'JENKIENS', 'CLOUD' , 'AZURE',
+      'IONIC', 'DEVEOPS', 'AWS' , 'NODEJS'
     ];
     this.dropdownSettings = {
       singleSelection: false,
@@ -75,13 +80,17 @@ export class AddcandidateComponent implements OnInit {
 
   onItemSelect(item: any) {
     console.log(item);
+     this.allskills =item
+    console.log(this.allskills);
   }
   onSelectAll(items: any) {
     console.log(items);
   }
 
+
   onsubmit() {
     this.isSubmitted = true;
+
     // if (this.requirementForm.invalid) return;
     // const reqData = {
     // };
@@ -113,12 +122,18 @@ export class AddcandidateComponent implements OnInit {
       currentcompany:this.requirementFormcontrol.currentcompany.value,
       durationfrom:this.requirementFormcontrol.durationfrom.value,
       durationto:this.requirementFormcontrol.durationto.value,
+      candidateskills: this.requirementFormcontrol.candidateskills.value,
     };
-    console.log(reqData)
+
+    console.log(reqData);
     this.reqservice.createCandidate(reqData).subscribe(data => {
       console.log(data);
       if (data.status === 201) {
+        this.candidateid = data.result._id;
+        this.candidatename = data.result.candidatefirstname+data.result.candidatelastname;
+
         alert("Successfully Created!");
+        this.route.navigate(['requirements/requirements/addresume'],{ queryParams: { number: this.candidateid, name: this.candidatename}});
       } else {
         alert(data.result);
       }
@@ -148,6 +163,7 @@ export class AddcandidateComponent implements OnInit {
       currentcompany: ['', Validators.required],
       durationfrom: ['', Validators.required],
       durationto: ['', Validators.required],
+      candidateskills: ['', [Validators.required]],
 
     })
       }
