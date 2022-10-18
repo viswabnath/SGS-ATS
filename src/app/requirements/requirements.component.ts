@@ -61,9 +61,13 @@ export class RequirementsComponent implements OnInit {
   //   }
   // }
 
+  msg(){
+    alert('Under Developement')
+  }
 
-
-
+  view(reqid :any){
+    this.route.navigate(['requirements/requirements/view'],{ queryParams: { number: reqid } });
+  }
 
 
 

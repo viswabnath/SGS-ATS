@@ -49,7 +49,7 @@
       <div class="row mb-3 mt-5">
         <label for="firstname" class="col-sm-2 col-form-label">Zone<span id="req">*</span></label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="zone" id="firstname" />
+          <input type="text" class="form-control" formControlName="zone" id="firstname" style="text-transform:uppercase" />
         </div>
         <small *ngIf="registerFormcontrol.zone.invalid && isSubmitted" class="error">Zone is required
         </small>
@@ -58,7 +58,7 @@
         <label for="firstname" class="col-sm-2 col-form-label">AM<span id="req">*</span></label>
         <div class="col-sm-10">
           <select class="form-select" formControlName="AM">
-            <option *ngFor="let item of somedata">{{item.firstname}}</option>
+            <option *ngFor="let item of somedata" value="item._id">{{item.firstname}}</option>
         </select>
         </div>
         <small *ngIf="registerFormcontrol.AM.invalid && isSubmitted" class="error">AM is required

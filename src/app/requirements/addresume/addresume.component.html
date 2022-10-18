@@ -21,7 +21,7 @@
     </form>
 </div> -->
 
-<input type="file" (change)="onFileSelected($event)">
+<input type="file" (change)="onFileSelected($event)" name="upload">
 <div class="file-upload">
    {{fileName || "No file uploaded yet."}}
     <button type="button" color="primary" class="upload-btn" (click)="onUpload()">Upload</button>

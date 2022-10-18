@@ -3,9 +3,11 @@ import countries from '../../shared/jsonfiles/country.json';
 import exp from '../../shared/jsonfiles/experience.json';
 import state from '../../shared/jsonfiles/state.json';
 import ctc from '../../shared/jsonfiles/ctc.json';
+import noticeperiod from '../../shared/jsonfiles/noticeperiod.json';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ReqService } from './../req.service';
-import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddresumeComponent } from '../addresume/addresume.component';
 
@@ -21,40 +23,57 @@ export class AddcandidateComponent implements OnInit {
   expList: { year: string }[] = exp;
   stateList: { name: string }[] = state;
   ctcList: { ctc: string }[] = ctc;
+  notice: { period: string }[] = noticeperiod;
   requirementForm!: FormGroup;
 
   isSubmitted = false;
   dropdownList: any[] = [];
   selectedItems: any[] = [];
-  allskills:any=[];
+  allskills: any = [];
   dropdownSettings: IDropdownSettings = {};
   number: any;
-  singledata:any;
-  reqdata:any;
+  singledata: any;
+  reqdata: any;
   fileName = '';
-  candidateid :any;
-  candidatename:any;
-  constructor(private formbuilder: FormBuilder , private reqservice:ReqService, private activer:ActivatedRoute,
-    private route : Router) { }
+  candidateid: any;
+  candidatename: any;
+  form: FormGroup = new FormGroup({});
+
+  constructor(private formbuilder: FormBuilder, private reqservice: ReqService, private activer: ActivatedRoute,
+    private route: Router) {
+
+    this.form = formbuilder.group({
+      mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]
+    })
+
+  }
+
+
+  get f() {
+    return this.form.controls;
+  }
+
 
   ngOnInit(): void {
 
-    this.activer.queryParams.subscribe(params =>{
-      this.number=params.number;
+    this.activer.queryParams.subscribe(params => {
+      this.number = params.number;
       console.log(this.number);
-      this.reqservice.singlereq(this.number).subscribe(data =>{
+      this.reqservice.singlereq(this.number).subscribe(data => {
         console.log(data);
-        if(data.status === 200){
+        if (data.status === 200) {
           this.singledata = data.result;
         }
         else {
           alert(data.result);
         }
       });
-      this.reqservice.assignedcandidates(this.number).subscribe((dataa:any) =>{
+      this.reqservice.assignedcandidates(this.number).subscribe((dataa: any) => {
         console.log(dataa);
-        if(dataa.status === 200){
+        if (dataa.status === 200) {
           this.reqdata = dataa.result;
+          console.log('reqdata' + this.reqdata);
+
         }
         else {
           alert(dataa.result);
@@ -64,8 +83,8 @@ export class AddcandidateComponent implements OnInit {
 
     this._initForm();
     this.dropdownList = [
-      'JAVA' , 'HTML' , 'CSS' , 'SQL' , 'HANA' , 'MONGODB', 'REACT' , 'ANGULAR' , 'ANGULARJS' , 'MICROSERVICES' , 'JENKIENS', 'CLOUD' , 'AZURE',
-      'IONIC', 'DEVEOPS', 'AWS' , 'NODEJS'
+      'JAVA', 'HTML', 'CSS', 'SQL', 'HANA', 'MONGODB', 'REACT', 'ANGULAR', 'ANGULARJS', 'MICROSERVICES', 'JENKIENS', 'CLOUD', 'AZURE',
+      'IONIC', 'DEVEOPS', 'AWS', 'NODEJS'
     ];
     this.dropdownSettings = {
       singleSelection: false,
@@ -80,7 +99,7 @@ export class AddcandidateComponent implements OnInit {
 
   onItemSelect(item: any) {
     console.log(item);
-     this.allskills =item
+    this.allskills = item
     console.log(this.allskills);
   }
   onSelectAll(items: any) {
@@ -98,31 +117,32 @@ export class AddcandidateComponent implements OnInit {
     // this.isSubmitted = true;
     // if (this.requirementForm.invalid) return;
     const reqData = {
-      RequirementId:this.singledata._id,
-      RequirementName:this.singledata.RequirementName,
-      JobCode:this.singledata.JobCode,
+      RequirementId: this.singledata._id,
+      RequirementName: this.singledata.RequirementName,
+      JobCode: this.singledata.JobCode,
       candidatefirstname: this.requirementFormcontrol.candidatefirstname.value,
-      candidatelastname: this.requirementFormcontrol.candidatelastname.value,
+      // candidatelastname: this.requirementFormcontrol.candidatelastname.value,
       candidatenumber: this.requirementFormcontrol.candidatenumber.value,
       candidateemail: this.requirementFormcontrol.candidateemail.value,
-      country: this.requirementFormcontrol.country.value,
-      state: this.requirementFormcontrol.state.value,
+      // country: this.requirementFormcontrol.country.value,
+      // state: this.requirementFormcontrol.state.value,
       currentlocation: this.requirementFormcontrol.currentlocation.value,
-      DOB: this.requirementFormcontrol.DOB.value,
+      // DOB: this.requirementFormcontrol.DOB.value,
       pannumber: this.requirementFormcontrol.pannumber.value,
       highestdegree: this.requirementFormcontrol.highestdegree.value,
-      university: this.requirementFormcontrol.university.value,
+      // university: this.requirementFormcontrol.university.value,
       passingyear: this.requirementFormcontrol.passingyear.value,
       worklocation: this.requirementFormcontrol.worklocation.value,
       totalexp: this.requirementFormcontrol.totalexp.value,
-      relevantexp:this.requirementFormcontrol.relevantexp.value,
-      currentctc:this.requirementFormcontrol.currentctc.value,
-      expectedctc:this.requirementFormcontrol.expectedctc.value,
-      noticeperiod:this.requirementFormcontrol.noticeperiod.value,
-      currentcompany:this.requirementFormcontrol.currentcompany.value,
-      durationfrom:this.requirementFormcontrol.durationfrom.value,
-      durationto:this.requirementFormcontrol.durationto.value,
+      relevantexp: this.requirementFormcontrol.relevantexp.value,
+      currentctc: this.requirementFormcontrol.currentctc.value,
+      expectedctc: this.requirementFormcontrol.expectedctc.value,
+      noticeperiod: this.requirementFormcontrol.noticeperiod.value,
+      currentcompany: this.requirementFormcontrol.currentcompany.value,
+      durationfrom: this.requirementFormcontrol.durationfrom.value,
+      durationto: this.requirementFormcontrol.durationto.value,
       candidateskills: this.requirementFormcontrol.candidateskills.value,
+      CandiSecondarySkills: this.requirementFormcontrol.CandiSecondarySkills.value
     };
 
     console.log(reqData);
@@ -130,29 +150,28 @@ export class AddcandidateComponent implements OnInit {
       console.log(data);
       if (data.status === 201) {
         this.candidateid = data.result._id;
-        this.candidatename = data.result.candidatefirstname+data.result.candidatelastname;
-
+        this.candidatename = data.result.candidatefirstname + data.result.candidatelastname;
         alert("Successfully Created!");
-        this.route.navigate(['requirements/requirements/addresume'],{ queryParams: { number: this.candidateid, name: this.candidatename}});
+        this.route.navigate(['requirements/requirements/addresume'], { queryParams: { number: this.candidateid, name: this.candidatename } });
       } else {
         alert(data.result);
       }
     })
   }
 
-  private _initForm(){
+  private _initForm() {
     this.requirementForm = this.formbuilder.group({
       candidatefirstname: ['', Validators.required],
-      candidatelastname: ['', Validators.required],
+      // candidatelastname: ['', Validators.required],
       candidatenumber: ['', [Validators.required]],
-      candidateemail: ['', [Validators.required,Validators.email]],
-      country: ['',[Validators.required]],
-      state: ['', Validators.required],
+      candidateemail: ['', [Validators.required, Validators.email]],
+      // country: ['',[Validators.required]],
+      // state: ['', Validators.required],
       currentlocation: ['', Validators.required],
-      DOB: ['', Validators.required],
+      // DOB: ['', Validators.required],
       pannumber: ['', Validators.required],
       highestdegree: ['', Validators.required],
-      university: ['', Validators.required],
+      // university: ['', Validators.required],
       passingyear: ['', Validators.required],
       worklocation: ['', Validators.required],
       totalexp: ['', Validators.required],
@@ -164,12 +183,22 @@ export class AddcandidateComponent implements OnInit {
       durationfrom: ['', Validators.required],
       durationto: ['', Validators.required],
       candidateskills: ['', [Validators.required]],
+      CandiSecondarySkills: ['', Validators.required]
 
     })
-      }
+  }
 
-      get requirementFormcontrol() {
-        return this.requirementForm.controls;
-      }
+  get requirementFormcontrol() {
+    return this.requirementForm.controls;
+  }
+
+  remove(i: any) {
+    console.log(i);
+    console.log(this.singledata._id);
+    this.reqservice.removeCandidatefromReq(i, this.singledata._id).subscribe(data => {
+      console.log(data);
+      // this.route.navigate(['Requirements/requirements']);
+    })
+  }
 
 }

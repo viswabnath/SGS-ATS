@@ -1,32 +1,32 @@
 <app-header></app-header>
-<!-- [routerLink]="['/requirements/addreq']" -->
 <div class="container">
-  <div class="card-header clearfix ch">
-    <header class="float-start" style="font-weight: 800;">Requirement-List</header>
-    <button class="btn btn-warning btn-sm float-end " [routerLink]="['requirements/addreq']">Add-requirement</button>
-    <button class="btn btn-warning btn-sm float-end " style='margin-right:16px'>Add-Drive</button>
+ <div class="card mt-4 mb-4">
+  <div class="card-header">
+    <header class="float-start" style="font-weight: 800;">Requirement List</header>
+    <button class="btn btn-warning btn-sm float-end " [routerLink]="['requirements/addreq']">Add Requirement</button>
   </div>
-  <div class="mt-4 mb-4 cc">
-    <div class="float-end">count: {{reqcount}}</div>
+ </div>
+    <div class="float-end" style="padding:20px 0px;"> Total Count: {{reqcount}}</div>
 
 
     <!-- <div class="card"> -->
-    <div class="card-body">
-      <div style="padding-top:20px;padding-bottom:20px;">
+    <!-- <div class="card-body"> -->
+      <div style="padding: 5px 0px;">
         <input class="form-control" type="text" placeholder="Search.......">
       </div>
       <div class="table100 ver5 m-b-110">
         <div class="table100-head">
           <table>
             <thead>
-              <tr class="row100 head">
-                <th class="cell100 column1">Requirement Name</th>
-                <th class="cell100 column2">Experience </th>
-                <th class="cell100 column3">Company</th>
-                <th class="cell100 column4">Skills</th>
-                <th class="cell100 column5">Req Type</th>
-                <th class="cell100 column5">Job Code</th>
-                <th class="cell100 column5"></th>
+              <tr style="font-weight:500;">
+                <th>Requirement</th>
+                <th>Experience </th>
+                <th>Company</th>
+                <th>Req Type</th>
+                <th>Job Code</th>
+                <th>Location</th>
+                <th>RMG</th>
+                <th>Submitted Profiles</th>
               </tr>
             </thead>
           </table>
@@ -34,19 +34,21 @@
 
         <div class="table100-body js-pscroll">
           <table>
-            <tbody>
-              <tr class="row100 body" *ngFor="let item of carddetails">
+            <tbody *ngFor="let item of carddetails" (click)="view(item._id)">
+              <tr class="row100 body text-center">
                 <td class="cell100 column1">{{item?.RequirementName}}</td>
                 <td class="cell100 column2">{{item?.Experience}}</td>
                 <td class="cell100 column3">{{item.ClientId?.clientName}}</td>
-                <td class="cell100 column4">{{item.Skills}}</td>
-                <td class="cell100 column5">{{item.RequirementType}}</td>
+                <td class="cell100 column4">{{item.RequirementType}}</td>
                 <td class="cell100 column5">{{item.JobCode}}</td>
-                <td class="cell100 column5">
-                  <button class="btn btn-outline-success btn-sm" (click)="addcandidate(item._id)"> Post</button>
+                <td class="cell100 column6">{{item.Location}}</td>
+                <td class="cell100 column1">{{item.RGMspoc}}</td>
+                <td class="cell100 column1">{{item.submittedcandidates}}</td>
+                <td class="cell100 column1">
+                  <button class="btn btn-outline-success btn-sm" style="margin-top:5px;" (click)="addcandidate(item._id)"> Post</button>
                   <div *ngIf="isassigned">
-                    <button class="btn btn-outline-danger btn-sm">Edit</button>
-                  <button class="btn btn-outline-secondary btn-sm" (click)="assign(item._id)"> Assign</button>
+                    <button class="btn btn-outline-danger btn-sm" style="margin-top:5px;" (click)="msg()" >Edit</button>
+                  <button class="btn btn-outline-secondary btn-sm" style="margin-top:5px;" (click)="assign(item._id)"> Assign</button>
                   </div>
                 </td>
               </tr>
@@ -55,8 +57,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  <!-- </div> -->
+<!-- </div> -->
 <!-- </div> -->
 
 

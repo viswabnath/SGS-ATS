@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="container">
+
+  <form [formGroup]="moduleForm " (ngSubmit)="onsubmit()">
+
+    <div class="row">
+      <label for="location" class="col-form-label text-center" style="font-size:20px;">Add Location<span
+          style="color:red">*</span></label>
+      <div>
+        <input type="text" class="form-control" formControlName="locationname" id="firstname" />
+      </div>
+      <small *ngIf="registerFormcontrol.locationname.invalid && isSubmitted" class="error">Location Name is required
+      </small>
+
+      <div class="btn text-center ">
+        <button class="btn btn-success" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+  <div class="card">
+    <div class="card-body" *ngFor="let item of somedata">
+      <p style="text-transform:capitalize;">{{item.locationname}}</p>
+    </div>
+  </div>
+
+</div>

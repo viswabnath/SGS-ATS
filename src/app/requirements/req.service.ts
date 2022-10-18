@@ -52,5 +52,11 @@ export class ReqService {
     );
   }
 
+  removeCandidatefromReq(rid:any , cid:any){
+    return this.http.put<any>(
+      `${this.APIURL}api/v1/candidate/Delreqidfromcandi`, { reqid:rid,candidateid:cid}
+    )
+  }
+
 
 }

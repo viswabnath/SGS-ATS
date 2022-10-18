@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="container">
+
+  <form [formGroup]="moduleForm " (ngSubmit)="onsubmit()">
+
+    <div class="row">
+      <label for="Skills" class="col-form-label text-center" style="font-size:20px;">Add Skills<span
+          style="color:red">*</span></label>
+      <div>
+        <input type="text" class="form-control" formControlName="skillname" id="firstname" />
+      </div>
+      <small *ngIf="registerFormcontrol.skillname.invalid && isSubmitted" class="error">Skill Name is required
+      </small>
+
+      <div class="btn text-center">
+        <button class="btn btn-success" type="submit">Submit</button>
+      </div>
+
+    </div>
+
+  </form>
+
+  <div class="card">
+    <div class="card-body" *ngFor="let item of somedata">
+      <p style="text-transform: uppercase;">{{item.skillname}}</p>
+    </div>
+  </div>
+
+</div>

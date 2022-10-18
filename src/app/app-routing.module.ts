@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-  {path: 'welcome' , component:WelcomeComponent},
+  { path: 'welcome', component: WelcomeComponent },
   {
     path: 'forms',
     loadChildren: () =>
@@ -34,10 +34,11 @@ const routes: Routes = [
   },
   { path: 'clients', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule) },
   { path: 'actions', loadChildren: () => import('./actions/actions.module').then(m => m.ActionsModule) },
+  { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     this.dataa = JSON.parse(this.data)
     this.roles = this.dataa.role[0].permissions;
     this.write = this.roles[2].moduleTypes;
-    console.log(this.write)
+    // console.log(this.write)
     this.write.forEach((e: any) => {
       this.arr2.push(e.moduleName)
     });
@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
     this.firstArray.forEach(i => map[i] = false);
     this.arr2.forEach((i: any) => map[i] === false && (map[i] = true));
     let jsonArray = Object.keys(map).map(k => ({ name: k, matched: map[k] }));
-    console.log(jsonArray)
+    // console.log(jsonArray)
 
     let truevalues = jsonArray.filter((e: any) => {
       // return e.matched == true
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
         return this.checkArray.push(e.name)
       }
     })
-    console.log(this.checkArray)
+    // console.log(this.checkArray)
   }
 
 

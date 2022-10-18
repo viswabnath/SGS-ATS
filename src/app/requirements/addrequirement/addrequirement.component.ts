@@ -63,6 +63,7 @@ export class AddrequirementComponent implements OnInit {
       RequirementType: this.requirementFormcontrol.RequirementType.value,
       Location: this.requirementFormcontrol.Location.value,
       ClientId: this.requirementFormcontrol.ClientId.value,
+      RGMspoc : this.requirementFormcontrol.RGMspoc.value
     };
     console.log(reqData)
     this.reqservice.createReq(reqData).subscribe(data => {
@@ -90,6 +91,7 @@ this.requirementForm = this.formbuilder.group({
   RequirementType: ['', Validators.required],
   Location: ['', Validators.required],
   ClientId: ['', Validators.required],
+  RGMspoc:['',Validators.required]
 })
   }
 

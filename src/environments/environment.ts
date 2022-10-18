@@ -6,8 +6,10 @@ export const environment = {
   production: false,
   // apiURL:'https://evening-sierra-62642.herokuapp.com/'
   apiURL:'https://evening-everglades-49312.herokuapp.com/'
+  // apiURL:'https://ats-deploy-1.herokuapp.com/'
+  // apiURL:'http://localhost:5000/'
 };
-
+//
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

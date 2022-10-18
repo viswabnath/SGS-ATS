@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-addresume',
@@ -12,6 +13,7 @@ export class AddresumeComponent implements OnInit {
 
   number :any;
   candidatename:any;
+  APIURL = environment.apiURL
 
   myForm = new FormGroup({
       file: new FormControl('', [Validators.required]),
@@ -56,11 +58,11 @@ onFileSelected(event:any) {
 
 onUpload(){
 
+  // alert('Functionality Under Costruction');
   const fd = new FormData();
-  fd.append('file', this.selectedFile, this.selectedFile.name);
-  this.http.post('gs://awesomeproject-629d9.appspot.com/',fd).subscribe(res =>{
+  fd.append('upload', this.selectedFile, this.selectedFile.name);
+  this.http.post(`${this.APIURL}api/v1/fileupload/upload`,fd).subscribe(res =>{
     console.log(res);
-
   })
 
 }

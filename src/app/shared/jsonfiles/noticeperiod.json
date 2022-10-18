@@ -1,0 +1,11 @@
+[
+  {"period":"Immedidate"},
+  {"period":"1 Week"},
+  {"period":"10 Days"},
+  {"period":"15 Days"},
+  {"period":"30 Days"},
+  {"period":"45 Days"},
+  {"period":"60 Days"},
+  {"period":"90 Days"},
+  {"period":"Others"}
+]

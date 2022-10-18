@@ -39,7 +39,7 @@
 
 
 
-[ Table ]*/
+/* [ Table ]*/
 
   .limiter {
     width: 1366px;
@@ -84,7 +84,7 @@ cursor: pointer;
     font-weight: unset;
     padding-right: 10px;
   }
-
+/*
   .column1 {
     width: 16%;
     padding-left: 20px;
@@ -108,7 +108,7 @@ cursor: pointer;
 
   .column6 {
     width: 37%;
-  }
+  } */
   .table100-head th {
     padding-top: 18px;
     padding-bottom: 18px;

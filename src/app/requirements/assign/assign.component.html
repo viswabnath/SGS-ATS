@@ -7,12 +7,13 @@
   <div class="card mt-5">
     <div class="card-body">
       <h1>Hi {{loginname}} Welcome!</h1>
-      <h3 class="small mt-5">
-        you're assigning internal recuriters for {{singledata?.RequirementName}}
-      </h3>
+      <h6 style="text-transform:capitalize; margin: 20px 0px;">
+        you're assigning internal recuriters for <span style="color:  rgb(108, 156, 245);">{{singledata?.RequirementName}}</span>
+      </h6>
+
       <form [formGroup]="requirementForm" (ngSubmit)="onsubmit()">
         <div class="row mb-3">
-          <label for="skillset" class="col-sm-2 col-form-label">Internal Recruiters<span id="req">*</span></label>
+          <label for="skillset" class="col-sm-2 col-form-label">Select Recruiters<span id="req">*</span></label>
           <div class="col-sm-6">
             <ng-multiselect-dropdown [placeholder]="'Internal Recruiters'" [settings]="dropdownSettings"
               [data]="dropdownList" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
